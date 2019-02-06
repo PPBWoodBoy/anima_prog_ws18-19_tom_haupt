@@ -1,47 +1,46 @@
-ArrayList balls = new ArrayList();
+// Global variables
+float radius = 50.0;
+int X, Y;
+int nX, nY;
+int delay = 16;
 
-void setup() {
-    size(1920, 1080);
-    background(100);
+// Setup the Processing Canvas
+void setup(){
+  //size( 1920 , 1080 );
+  fullScreen();
+  strokeWeight( 10 );
+  frameRate( 60 ); // 60 fps
+  X = width / 2;
+  Y = height / 2;
+  nX = X;
+  nY = Y;  
 }
 
-void draw() {
-
-    // reset bgcolor
-    background(100);
-
-    if(balls.size() > 0) {
-        for(int i = 0; i < balls.size(); i++) {
-            balls.get(i).update(); // iterate through ball arraylist and update every ball
-            balls.get(i).draw(); // iterate through ball arraylist and draw every ball
-        }
-    }
-
-    void update() {
-        yV += gravity;
-        y += yV;
-
-        if(y > 480) {
-            yV = -20;
-        }
-    }
+// Main draw loop
+void draw(){
+  
+  radius = radius + sin( frameCount / 4 );
+  
+  // Track circle to new destination
+  X+=(nX-X)/delay;
+  Y+=(nY-Y)/delay;
+  
+  // Fill canvas grey
+  background( 100 );
+  
+  // Set fill-color to blue
+  fill( 0, 121, 184 );
+  
+  // Set stroke-color white
+  stroke(255); 
+  
+  // Draw circle
+  ellipse( X, Y, radius, radius );                  
 }
 
-// overwrite the mouseClicked function
-void mouseClicked() {
-    Ball b = new Ball(mouseX, mouseY); // create new ball when clicked
-    balls.add(b); // add ball to balls array
-}
 
-class Ball {
-    int x, y;
-    int yV;
-    int gravity;
-
-    Ball(int initX, int initY) {
-        x = initX;
-        y = initY;
-        yV = 1;
-        gravity = 1;
-    }
+// Set circle's next destination
+void mouseMoved(){
+  nX = mouseX;
+  nY = mouseY;  
 }
