@@ -21,7 +21,8 @@ Ein Projekt für das Wahlpflichtmodul: "Animationsprogrammierung mit Processing"
  - Boni?
  - Max. Vier Gegner (Vier verschiedene Farben: "R, G, B, Y"?)
  - Gegner starten mit einem Punkt (Radius: 10px) + 10px bei "essen"
- - Gegner starten mit vier Gegnern zum "essen"
+ - Gegner starten mit zehn Gegnern zum "essen"
+ - Gegner alle "Transparent" darstellen? Wenn hover auf Gegner/Node, dann voll sichtbar?
  
 Um einen Gegner zu zerstören, müssen zwei Gegner der selben Farbe angeklickt werden
 jenachdem wie viele "Punkte" ein Gegner hat. Hat ein Gegner bereits Vier andere Gegner der selben Farbe "gegessen"
@@ -40,7 +41,7 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
  - Highscores?
  - Spielernamen?
  - Gegner suchen sich gegenseitig
- - Gegner öbjekt erstellen (Hat attribute: name, farbe, punkte (größe), speed)
+ - Gegnerobjekt erstellen (Hat attribute: name, farbe, punkte (größe), speed, cordX, cordY)
  - Zeit und Punktestand anzeigen (UI)
 
 
@@ -48,7 +49,6 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
 Musik genutzt von:
 
 https://www.youtube.com/audiolibrary/music
-
 Density & Time - Venetian
 
 
