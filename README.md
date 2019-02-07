@@ -41,7 +41,7 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
  - Hintergrund nach Zeitlimit ändern
  - ~~Gegner erzeugen~~
  - Menü
- - Sounds einbauen
+ - ~~Sounds einbauen~~
  - Countdown
  - Scoresystem
  - Highscores?
@@ -52,20 +52,16 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
 
 ---
 
-Genutzte Libraries:
-
+#### Genutzte Libraries:
 ProccesingJS (v1.4.8)
-
 BuzzJS (v1.2.1)
-
 jQuery?
 
 
 
-Musik genutzt von:
+#### Musik genutzt von:
 
 https://www.youtube.com/audiolibrary/music
-
 Density & Time - Venetian
 
 
