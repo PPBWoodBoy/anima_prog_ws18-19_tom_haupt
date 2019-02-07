@@ -2,6 +2,8 @@
 
 Ein Projekt für das Wahlpflichtmodul: "Animationsprogrammierung mit Processing".
 
+---
+
 ### Features:
  - Countdown am Anfang
  - Gegner verschiedener Farbe erzeugen sich selbst (Kreise?)
@@ -24,16 +26,19 @@ Ein Projekt für das Wahlpflichtmodul: "Animationsprogrammierung mit Processing"
  - Gegner starten mit zehn Gegnern zum "essen"
  - Gegner alle "Transparent" darstellen? Wenn hover auf Gegner/Node, dann voll sichtbar?
  
+---
+ 
 Um einen Gegner zu zerstören, müssen zwei Gegner der selben Farbe angeklickt werden
 jenachdem wie viele "Punkte" ein Gegner hat. Hat ein Gegner bereits Vier andere Gegner der selben Farbe "gegessen"
 muss man den Gegner anklicken und danach einen Punkt der seine Farbe hat (x4), um ihn zu "zerstören"
 Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hintergrund invertiert).
 
+---
 
 ### ToDo:
- - Gegner in ArrayList speichern
+ - ~~Gegner in ArrayList speichern~~
  - Hintergrund nach Zeitlimit ändern
- - Gegner erzeugen
+ - ~~Gegner erzeugen~~
  - Menü
  - Sounds einbauen
  - Countdown
@@ -41,14 +46,16 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
  - Highscores?
  - Spielernamen?
  - Gegner suchen sich gegenseitig
- - Gegnerobjekt erstellen (Hat attribute: name, farbe, punkte (größe), speed, cordX, cordY)
+ - ~~Gegnerobjekt erstellen (Hat attribute: name, farbe, punkte (größe), speed, cordX, cordY)~~
  - Zeit und Punktestand anzeigen (UI)
 
+---
 
 
 Musik genutzt von:
 
 https://www.youtube.com/audiolibrary/music
+
 Density & Time - Venetian
 
 
