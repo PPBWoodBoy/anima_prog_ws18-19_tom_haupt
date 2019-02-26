@@ -6,8 +6,16 @@
 	BuzzJS v1.2.1
 	jQuery??
 	
-	Made by Tom Haupt, 25.02.19
+	Made by Tom Haupt, 26.02.19
 	DO NOT CHANGE
+	
+	TODO:
+	
+	- check bug selected true? after selected true?
+	- reset color
+	- move Nodes
+	- delete Nodes when selected true
+	- gamestate
 **/
 
 
@@ -15,12 +23,11 @@
 var rand_x_cord;
 var rand_y_cord;
 
-var windowXRes = 1900;
-var windowYRes = 895;
-
+var windowXRes = 1280;
+var windowYRes = 720;
 
 // backgroundColor
-int bg_color;
+var bg_color; // int
 
 // sound vars
 var bg_music = new buzz.sound("sounds/bg_music.mp3");
@@ -32,7 +39,7 @@ var selected_right = new buzz.sound("sounds/enemy_killed.mp3");
 color c1 = #ff6b6b; // red
 color c2 = #a5ff8c; // green
 color c3 = #70c5ff; // blue
-color c4 = #ffe056; // yellow, orange
+color c4 = #ffe056; // yellow
 
 // color Array
 color[] colors  = {  
@@ -40,7 +47,6 @@ color[] colors  = {
 };
 
 // selected Array, init with two
-//var sArray = {null, null};
 var sArray = [];
 
 // enemy ArrayList:
@@ -49,19 +55,38 @@ ArrayList<Enemy> enemyNodes;
 
 // global function to check array
 function checkArray() {
-	//console.log('selectedItemsArray function log:');
-	//console.log(sArray[0]);
-	//console.log(sArray[1]);
-	
-	if(sArray[0].id == sArray[1].parentID || sArray[0].parentID == sArray[1].id || sArray[1].parentID == sArray[0].id || sArray[1].parentID == sArray[0].id) {
+	//if(sArray[0].id == sArray[1].parentID || sArray[0].parentID == sArray[1].id || sArray[1].parentID == sArray[0].id || sArray[1].parentID == sArray[0].id) {
+		if(sArray[0].parentID == sArray[1].id) { 
 		// true
 		console.log(true);
+		console.log(sArray.length);
+
+		// reset Array
+		resetSelectArray();
+
 		return true;
 	} else {
 		// false
 		console.log(false);
+		
+		// log array
+		console.log('sArray color:');
+		console.log(sArray[0].farbe);
+		console.log(sArray[1].farbe);
+		
+		// reset Array
+		resetSelectArray();
+		
 		return false;
 	}
+}
+
+// function to reset the select Array
+function resetSelectArray() {
+	sArray = [];
+	
+	console.log('reset array:');
+	console.log(sArray.length);
 }
 
 // Enemy Class
@@ -96,7 +121,10 @@ class Enemy {
 	
 	// function to trigger the click
 	void clicked() {
-		var d = dist(mouseX, mouseY, this.cordX, this.cordY);
+		
+		var tempCol = this.farbe;
+		var d = dist(mouseX, mouseY, this.cordX, this.cordY); // distance var
+		
 		if(d < this.width/2) {
 			this.farbe = color(255, 255, 255);
 			// play selected sound
@@ -105,22 +133,20 @@ class Enemy {
 			
 			// call check array func.
 			if(checkArray() == true) {
+				// play "scored" sound and stop selected sound
+				selected.stop();
 				selected_right.play();
+				
+				this.farbe = tempCol;
+				this.setStroke(color(0,0,0));
+				
+				console.log('delete enemyNode');
+				
 			} else {
 				selected_wrong.play();
 				// TODO: reset color with temp var
-			}
-		}
-		
-		// check if the first selected Items fits the second and vizeversa
-		for(i = 0; i < sArray.length(); i++) {
-			if(sArray[i].parentID == sArray[i++].id) {
-				//console.log(sArray[i]);
-				//console.log(sArray[i++]);
+				this.farbe = tempCol;
 				
-				//console.log('enemy ID is the same as Parent!');
-			} else {
-				//console.log('enemy ID is NOT the same as Parent!');
 			}
 		}
 	}
@@ -192,11 +218,7 @@ class EnemyNode {
 	// function to trigger the click
 	void clicked() {
 		
-		var tempCol = this.color;
-		
-		console.log(tempCol);
-		console.log(color);
-		
+		var tempCol = this.farbe; // temp color
 		var d = dist(mouseX, mouseY, this.cordX, this.cordY); // get distance between mouse and ellipse radius
 		
 		if(d < this.width/2) {
@@ -207,24 +229,22 @@ class EnemyNode {
 			
 			// call check array func.
 			if(checkArray() == true) {
+				
+				selected.stop();
 				selected_right.play();
+				
+				// reset color and delete selected Node
+				this.farbe = tempCol;
+				
+				
 			} else {
 				selected.stop();
 				selected_wrong.play();
+				
 				// TODO: reset color with temp var
+				this.farbe = tempCol;
 				
-			}
-		}
-		
-		// check if the first selected Items fits the second and vizeversa
-		for(i = 0; i < sArray.length(); i++) {
-			if(sArray[i].id == sArray[i++].parentID) {
-				//console.log(sArray[i]);
-				//console.log(sArray[i++]);
 				
-				//console.log('node ID is the same as Parent!');
-			} else {
-				//console.log('node ID is NOT the same as Parent!');
 			}
 		}
 	}
@@ -261,17 +281,10 @@ void setup() {
 	// set the background color
 	bg_color = 255;
 	background(bg_color);
-	
-	// check for buzz support
-	/*if (!buzz.isSupported()) {
-		alert("Your browser does not support BuzzJS!");
-	}*/
+	smooth(8);
 	
 	// Setup "game" settings
-	//size(displayWidth, displayHeight)
-	//fullScreen(); // sets the "game" to the full resolution of the browser window
 	size(windowXRes, windowYRes);
-	//strokeWeight(2); 
 	frameRate(60); // 60 fps
 
 	// play bg music sound, dont play now
@@ -301,18 +314,18 @@ void setup() {
 	}
 	
 	// log all enemyNodes + x and y cords.
-	for(k = 0; k <= enemyNodes.size()-1; k++) {
+	/*for(k = 0; k <= enemyNodes.size()-1; k++) {
 		console.log(enemyNodes.get(k));
 		
-		/*console.log("enemyNode X/Y:");
+		console.log("enemyNode X/Y:");
 		console.log(enemyNodes.get(k).getXCord());
 		console.log(enemyNodes.get(k).getYCord());
 		
 		console.log("enemy X/Y:");
 		console.log(enemys.get(k).getXCord());
 		console.log(enemys.get(k).getYCord());
-		*/
-	}
+		
+	}*/
 }
 
 // Main draw loop
@@ -330,26 +343,17 @@ void draw(){ // NO CONSOLE.LOG()!!!!
 	for (int i = 0; i <= enemys.size()-1; i++) {		
 		Enemy enemy = enemys.get(i);
 		enemy.display();
-		//enemy.update();
 	}
 	
 	// iterate enemyNode array and "draw" them
 	for (int j = 0; j <= enemyNodes.size()-1; j++) {		
 		EnemyNode eNode = enemyNodes.get(j);
 		Enemy enemy = enemys.get(0);
-		//Enemy enemy = enemys.get(i);
-		
-		// change x and y cords to move the node to the "core"
-		//eNode.setXCord(eNode.getXCord()); // move node enemy? 
-		//eNode.setYCord(eNode.getYCord()); // move node enemy?
+
 		eNode.display();
 		
-		//eNode.update();
-		//enemy.update();
 		
 		// draw lines between the "core" and "nodes"
-		// check for IDs
-		// replace enemys.get(0) -> enemys.get(i) (0 - 3 index), 
 		if(enemys.get(0).getID() == enemyNodes.get(j).getParentID()) { // draw RED
 			stroke(enemys.get(0).getColor());
 			line(enemyNodes.get(j).getXCord(), enemyNodes.get(j).getYCord(), enemys.get(0).getXCord(), enemys.get(0).getYCord()); // x1, y1, x2, y2
@@ -369,7 +373,6 @@ void draw(){ // NO CONSOLE.LOG()!!!!
 
 // if mouse is pressed (not released)
 void mousePressed() {
-	// black border of 2px around the selected ellipse
 	// check if ellipse is clicked?
 	
 	// iterate nodes array

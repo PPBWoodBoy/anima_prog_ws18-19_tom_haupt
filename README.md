@@ -36,22 +36,6 @@ Wenn ein Gegner angeklickt wird, wird er mit einem Kreis markiert. (Farbe: Hinte
 
 ---
 
-### ToDo:
- - ~~Gegner in ArrayList speichern~~
- - Hintergrund nach Zeitlimit ändern
- - ~~Gegner erzeugen~~
- - Menü
- - ~~Sounds einbauen~~
- - Countdown
- - Scoresystem
- - Highscores?
- - Spielernamen?
- - Gegner suchen sich gegenseitig
- - ~~Gegnerobjekt erstellen (Hat attribute: name, farbe, punkte (größe), speed, cordX, cordY)~~
- - Zeit und Punktestand anzeigen (UI)
-
----
-
 #### Genutzte Libraries:
  - ProccesingJS (v1.4.8)
  - BuzzJS (v1.2.1)
@@ -68,4 +52,4 @@ Density & Time - Venetian
 
 
 
-#### 25.02.19, Tom Haupt (FDAI3784)
+#### 26.02.19, Tom Haupt (FDAI3784)
