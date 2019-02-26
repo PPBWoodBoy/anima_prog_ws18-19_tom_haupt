@@ -7,9 +7,23 @@
         <title>TimeNet - Tom Haupt</title>
         <script src="js/processing.min.js"></script> <!-- processing js -->
 		<script src="js/buzz.min.js"></script> <!-- buzz js -->
+		<script src="js/jquery.min.js"></script> <!-- jquery js -->
+		<script src="js/own.js"></script> <!-- own js -->
+		<link rel="stylesheet" type="text/css" href="css/style.css"> <!-- style css -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> <!-- bootstrap css -->
     </head>
     <body>
+	<div id="controls" class="text-center">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" class="btn btn-primary" id="btnPlayer">Playername</button>
+			<button type="button" class="btn btn-secondary" id="btnRestart">Restart</button>
+			<button type="button" class="btn btn-secondary" id="btnHigh">Highscore</button>
+			<button type="button" class="btn btn-secondary" id="btnHigh">Mute Sound</button>
+		</div>
+	</div>
         <!-- Main canvas for the processing js canvas -->
-        <canvas data-processing-sources="timenet_main.pde"></canvas>
+		<div id="timeNet_canvas">
+			<canvas data-processing-sources="timenet_main.pde"></canvas>
+		</div>
     </body>
 </html>

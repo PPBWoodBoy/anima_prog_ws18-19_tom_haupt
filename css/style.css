@@ -1,0 +1,16 @@
+canvas {
+	height: 100%;
+	width: 100%;
+}
+
+/* set bg color to the same color as the games color */
+html {
+	background-color: #646464;
+}
+
+#controls {
+	margin-bottom: 5px;
+	background-color: #fff;
+	padding-left: 2px;
+	padding-right: 2px;
+}
