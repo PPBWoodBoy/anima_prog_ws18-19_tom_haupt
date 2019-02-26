@@ -8,22 +8,55 @@
         <script src="js/processing.min.js"></script> <!-- processing js -->
 		<script src="js/buzz.min.js"></script> <!-- buzz js -->
 		<script src="js/jquery.min.js"></script> <!-- jquery js -->
-		<script src="js/own.js"></script> <!-- own js -->
 		<link rel="stylesheet" type="text/css" href="css/style.css"> <!-- style css -->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> <!-- bootstrap css -->
     </head>
     <body>
 	<div id="controls" class="text-center">
 		<div class="btn-group" role="group" aria-label="Basic example">
-			<button type="button" class="btn btn-primary" id="btnPlayer">Playername</button>
-			<button type="button" class="btn btn-secondary" id="btnRestart">Restart</button>
-			<button type="button" class="btn btn-secondary" id="btnHigh">Highscore</button>
-			<button type="button" class="btn btn-secondary" id="btnHigh">Mute Sound</button>
+			<!--<button type="button" class="btn btn-primary" id="btnPlayer">Playername</button>-->
+			<button type="button" class="btn btn-danger" id="btnRestart">Restart</button>
+			<!--<button type="button" class="btn btn-secondary" id="btnHigh">Highscore</button>-->
+			<button type="button" class="btn btn-warning" id="btnSound">Mute Sounds</button>
 		</div>
 	</div>
         <!-- Main canvas for the processing js canvas -->
 		<div id="timeNet_canvas">
 			<canvas data-processing-sources="timenet_main.pde"></canvas>
 		</div>
+		<!-- Gamestate DIVS -->
+		<!-- game lost -->
+		<div id="lost">
+			<h2 class="text-center">YOU LOST!</h2>
+		</div>
+		<!-- game won -->
+		<div id="won">
+			<h2 class="text-center">YOU WON!</h2>
+		</div>
+		
+		<!-- own javascript code-->
+		<script>
+			/**
+				OWN JAVASCRIPT FILE!
+				
+				DO NOT CHANGE!
+				
+				27.02.19, Tom H.
+			**/
+
+			$('#btnRestart').on('click', function() {
+				location.reload();
+			});
+			
+			$('#btnSound').on('click', function() {
+				buzz.all().mute();
+			});
+
+			$(document).ready(function() {
+				$('#won').hide();
+				$('#lost').hide();
+			});
+		</script>
+		
     </body>
 </html>

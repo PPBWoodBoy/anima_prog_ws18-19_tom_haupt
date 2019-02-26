@@ -14,3 +14,21 @@ html {
 	padding-left: 2px;
 	padding-right: 2px;
 }
+
+#won {
+	height: 100%;
+	width: 100%;
+}
+
+#won h2 {
+	margin-top: 20%;
+}
+
+#lost {
+	height: 100%;
+	width: 100%;
+}
+
+#lost h2 {
+	margin-top: 20%;
+}
